@@ -45,7 +45,9 @@ from strings import get_string
 welcome_db = db.welcome_config 
 
 YUMI_PICS = [
-"https://i.ibb.co/qY7BD4SY/image.jpg",  
+"https://files.catbox.moe/5go4t6.jpg",
+"https://files.catbox.moe/vbdda6.jpg",
+"https://files.catbox.moe/l2id2z.jpg",  
 
 ]
 
@@ -61,7 +63,7 @@ async def delete_sticker_after_delay(message, delay):
 #      SET WELCOME COMMANDS
 # ================================
 # Yahan maine filter change karke aapki ID laga di hai (Ping jaisa)
-@app.on_message(filters.command(["setwelcome_dm", "setwelcome_grp"]) & filters.user(7659846392))
+@app.on_message(filters.command(["setwelcome_dm", "setwelcome_grp"]) & filters.user(7553434931))
 async def set_welcome_msg(client, message):
     cmd = message.command[0].lower()
     msg_type = "welcome_dm" if "dm" in cmd else "welcome_group"
@@ -122,7 +124,7 @@ async def start_pm(client, message: Message, _):
     
     # --- REACTION START ---
     try:
-        await message.react(emoji="❤️")
+        await message.react(emoji="😘")
     except Exception:
         pass
     # --- REACTION END ---
@@ -138,13 +140,13 @@ async def start_pm(client, message: Message, _):
     await asyncio.sleep(0.1)
     await loading_1.edit_text("<b>ᴅɪηɢ ᴅᴏηɢ...❤️‍🔥</b>")
     await asyncio.sleep(0.1)
-    await loading_1.edit_text("<b>ʀᴧᴅʜᴧ </b>")
+    await loading_1.edit_text("<b>ʀᴀᴅʜᴀ</b>")
     await asyncio.sleep(0.1)
-    await loading_1.edit_text("<b>ʀᴧᴅʜᴧ 𝘹</b>")
+    await loading_1.edit_text("<b>ʀᴀᴅʜᴀ ꭙ</b>")
     await asyncio.sleep(0.1)
-    await loading_1.edit_text("<b>ʀᴧᴅʜᴧ 𝘹 ᴍᴜsɪᴄ ♪</b>")
+    await loading_1.edit_text("<b>ʀᴀᴅʜᴀ ꭙ ϻᴜsɪᴄ ♪</b>")
     await asyncio.sleep(0.1)
-    await loading_1.edit_text("<b>sᴛᴧʀᴛᴇᴅ!🥀</b>")
+    await loading_1.edit_text("<b>sᴛᴧʀᴛed!🥀</b>")
     await asyncio.sleep(0.1)
     await loading_1.delete()
     # --- ANIMATION END ---
@@ -233,7 +235,7 @@ async def start_pm(client, message: Message, _):
 async def start_gp(client, message: Message, _):
     # --- REACTION START ---
     try:
-        await message.react(emoji="❤️")
+        await message.react(emoji="😘")
     except Exception:
         pass
     # --- REACTION END ---
