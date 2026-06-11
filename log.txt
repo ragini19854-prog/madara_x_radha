@@ -91,3 +91,62 @@ client_session: <aiohttp.client.ClientSession object at 0x7fae1c74e600>
 [11-Jun-26 06:05:18 - INFO] - SHUKLAMUSIC - ╔═════ஜ۩۞۩ஜ════╗
   ☠︎︎𝗠𝗔𝗗𝗘 𝗕𝗬 𝗠𝗥 𝗦𝗛𝗜𝗩𝗔𝗡𝗦𝗛
 ╚═════ஜ۩۞۩ஜ════╝
+[11-Jun-26 16:11:08 - INFO] - SHUKLAMUSIC.core.mongo - Connecting to your Mongo Database...
+[11-Jun-26 16:11:08 - INFO] - SHUKLAMUSIC.core.mongo - Connected to your Mongo Database.
+[11-Jun-26 16:11:08 - INFO] - SHUKLAMUSIC.core.dir - Directories Updated.
+[11-Jun-26 16:11:08 - INFO] - SHUKLAMUSIC.core.git - Git Client Found [VPS DEPLOYER]
+[11-Jun-26 16:11:08 - INFO] - SHUKLAMUSIC.misc - 𝗗𝗔𝗧𝗔𝗕𝗔𝗦𝗘 𝗟𝗢𝗔𝗗 𝗕𝗔𝗕𝗬🍫........
+[11-Jun-26 16:11:08 - INFO] - SHUKLAMUSIC.core.bot - Starting Bot...
+[11-Jun-26 16:14:12 - INFO] - SHUKLAMUSIC.core.mongo - Connecting to your Mongo Database...
+[11-Jun-26 16:14:12 - INFO] - SHUKLAMUSIC.core.mongo - Connected to your Mongo Database.
+[11-Jun-26 16:14:12 - INFO] - SHUKLAMUSIC.core.dir - Directories Updated.
+[11-Jun-26 16:14:12 - INFO] - SHUKLAMUSIC.core.git - Git Client Found [VPS DEPLOYER]
+[11-Jun-26 16:14:12 - INFO] - SHUKLAMUSIC.misc - 𝗗𝗔𝗧𝗔𝗕𝗔𝗦𝗘 𝗟𝗢𝗔𝗗 𝗕𝗔𝗕𝗬🍫........
+[11-Jun-26 16:14:12 - INFO] - SHUKLAMUSIC.core.bot - Starting Bot...
+[11-Jun-26 16:14:14 - INFO] - SHUKLAMUSIC.misc - 𝗦𝗨𝗗𝗢 𝗨𝗦𝗘𝗥 𝗗𝗢𝗡𝗘✨🎋.
+[11-Jun-26 16:14:23 - INFO] - SHUKLAMUSIC.core.bot - Music Bot Started Successfully as ˹ 𝐑ᴀᴅʜᴀ ꭙ 𝐌ᴜꜱɪᴄ ♪˼ [ ɴᴏ ᴀᴅs ]
+[11-Jun-26 16:14:58 - INFO] - SHUKLAMUSIC.core.mongo - Connecting to your Mongo Database...
+[11-Jun-26 16:14:58 - INFO] - SHUKLAMUSIC.core.mongo - Connected to your Mongo Database.
+[11-Jun-26 16:14:58 - INFO] - SHUKLAMUSIC.core.dir - Directories Updated.
+[11-Jun-26 16:14:58 - INFO] - SHUKLAMUSIC.core.git - Git Client Found [VPS DEPLOYER]
+[11-Jun-26 16:14:58 - INFO] - SHUKLAMUSIC.misc - 𝗗𝗔𝗧𝗔𝗕𝗔𝗦𝗘 𝗟𝗢𝗔𝗗 𝗕𝗔𝗕𝗬🍫........
+[11-Jun-26 16:14:58 - INFO] - SHUKLAMUSIC.core.bot - Starting Bot...
+[11-Jun-26 16:14:59 - INFO] - SHUKLAMUSIC.misc - 𝗦𝗨𝗗𝗢 𝗨𝗦𝗘𝗥 𝗗𝗢𝗡𝗘✨🎋.
+[11-Jun-26 16:15:10 - INFO] - SHUKLAMUSIC.core.bot - Music Bot Started Successfully as ˹ 𝐑ᴀᴅʜᴀ ꭙ 𝐌ᴜꜱɪᴄ ♪˼ [ ɴᴏ ᴀᴅs ]
+[11-Jun-26 16:15:10 - INFO] - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+[11-Jun-26 16:15:10 - INFO] - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+[11-Jun-26 16:15:10 - INFO] - apscheduler.scheduler - Added job "start_nightmode" to job store "default"
+[11-Jun-26 16:15:10 - INFO] - apscheduler.scheduler - Added job "close_nightmode" to job store "default"
+[11-Jun-26 16:15:10 - INFO] - apscheduler.scheduler - Scheduler started
+[11-Jun-26 16:16:13 - INFO] - SHUKLAMUSIC.core.mongo - Connecting to your Mongo Database...
+[11-Jun-26 16:16:13 - INFO] - SHUKLAMUSIC.core.mongo - Connected to your Mongo Database.
+[11-Jun-26 16:16:13 - INFO] - SHUKLAMUSIC.core.dir - Directories Updated.
+[11-Jun-26 16:16:13 - INFO] - SHUKLAMUSIC.core.git - Git Client Found [VPS DEPLOYER]
+[11-Jun-26 16:16:13 - INFO] - SHUKLAMUSIC.misc - 𝗗𝗔𝗧𝗔𝗕𝗔𝗦𝗘 𝗟𝗢𝗔𝗗 𝗕𝗔𝗕𝗬🍫........
+[11-Jun-26 16:16:13 - INFO] - SHUKLAMUSIC.core.bot - Starting Bot...
+[11-Jun-26 16:16:14 - INFO] - SHUKLAMUSIC.misc - 𝗦𝗨𝗗𝗢 𝗨𝗦𝗘𝗥 𝗗𝗢𝗡𝗘✨🎋.
+[11-Jun-26 16:16:23 - INFO] - SHUKLAMUSIC.core.bot - Music Bot Started Successfully as ˹ 𝐑ᴀᴅʜᴀ ꭙ 𝐌ᴜꜱɪᴄ ♪˼ [ ɴᴏ ᴀᴅs ]
+[11-Jun-26 16:16:23 - INFO] - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+[11-Jun-26 16:16:23 - INFO] - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+[11-Jun-26 16:16:23 - INFO] - apscheduler.scheduler - Added job "start_nightmode" to job store "default"
+[11-Jun-26 16:16:23 - INFO] - apscheduler.scheduler - Added job "close_nightmode" to job store "default"
+[11-Jun-26 16:16:23 - INFO] - apscheduler.scheduler - Scheduler started
+[11-Jun-26 16:16:24 - INFO] - SHUKLAMUSIC.plugins - 𝐀𝐥𝐥 𝐅𝐞𝐚𝐭𝐮𝐫𝐞𝐬 𝐋𝐨𝐚𝐝𝐞𝐝 𝐁𝐚𝐛𝐲🥳...
+[11-Jun-26 16:16:24 - INFO] - SHUKLAMUSIC.core.userbot - Starting Assistants...
+[11-Jun-26 16:16:25 - INFO] - SHUKLAMUSIC.core.userbot - Assistant Started as <a href=tg://user?id=6670240589>🍹𝆺𝅥⃝🤍 ‌‌ ●🇷 🇦 🇩 🇭 🇦 🇦 🇸 🇸 🇮 T🇦 🇳 T🤍𝆺꯭𝅥⎯꯭‌⎯꯭</a>
+[11-Jun-26 16:16:25 - INFO] - SHUKLAMUSIC.core.call - Starting PyTgCalls Client...
+
+[11-Jun-26 16:16:41 - INFO] - SHUKLAMUSIC - ╔═════ஜ۩۞۩ஜ════╗
+  ☠︎︎𝗠𝗔𝗗𝗘 𝗕𝗬 𝗠𝗥 𝗦𝗛𝗜𝗩𝗔𝗡𝗦𝗛
+╚═════ஜ۩۞۩ஜ════╝
+[11-Jun-26 16:32:12 - ERROR] - pyrogram.dispatcher - Replacement index 2 out of range for positional args tuple
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pyrogram/dispatcher.py", line 373, in handler_worker
+    await handler.callback(self.client, *args)
+  File "/home/runner/workspace/SHUKLAMUSIC/utils/decorators/language.py", line 55, in wrapper
+    return await mystic(_, CallbackQuery, language)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/SHUKLAMUSIC/plugins/bot/settings.py", line 97, in settings_back_markup
+    _["start_2"].format(CallbackQuery.from_user.mention, app.mention),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: Replacement index 2 out of range for positional args tuple
