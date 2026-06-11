@@ -13,6 +13,7 @@
 # -----------------------------------------------
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram import Client, filters, enums
+from pyrogram.enums import ButtonStyle
 
 # ── Premium emoji IDs (Emoji_fan37_by_TgEmodziBot pack) ──
 _E_BRAIN   = 4958937938239947673   # 🧠  ChatGPT
@@ -40,41 +41,41 @@ _E_PLAY    = 4956250031741993892   # ▶️  Forward nav
 class BUTTONS(object):
     MBUTTON = [
         [
-            InlineKeyboardButton("ᴄʜᴀᴛ-ɢᴘᴛ",    callback_data="mplus HELP_ChatGPT",  icon_custom_emoji_id=_E_BRAIN),
-            InlineKeyboardButton("ɢʀᴏᴜᴘs",       callback_data="mplus HELP_Group",  icon_custom_emoji_id=_E_CROWN),
-            InlineKeyboardButton("sᴛɪᴄᴋᴇʀs",     callback_data="mplus HELP_Sticker",   icon_custom_emoji_id=_E_HAT),
+            InlineKeyboardButton("ᴄʜᴀᴛ-ɢᴘᴛ",    callback_data="mplus HELP_ChatGPT", style=ButtonStyle.PRIMARY,  icon_custom_emoji_id=_E_BRAIN),
+            InlineKeyboardButton("ɢʀᴏᴜᴘs",       callback_data="mplus HELP_Group",   style=ButtonStyle.SUCCESS,  icon_custom_emoji_id=_E_CROWN),
+            InlineKeyboardButton("sᴛɪᴄᴋᴇʀs",     callback_data="mplus HELP_Sticker", style=ButtonStyle.DANGER,   icon_custom_emoji_id=_E_HAT),
         ],
         [
-            InlineKeyboardButton("ᴛᴀɢ-ᴀʟʟ",      callback_data="mplus HELP_TagAll",   icon_custom_emoji_id=_E_PIN),
-            InlineKeyboardButton("ɪɴꜰᴏ",          callback_data="mplus HELP_Info",  icon_custom_emoji_id=_E_INFO),
-            InlineKeyboardButton("ᴇxᴛʀᴀ",         callback_data="mplus HELP_Extra",  icon_custom_emoji_id=_E_SPARK),
+            InlineKeyboardButton("ᴛᴀɢ-ᴀʟʟ",      callback_data="mplus HELP_TagAll",  style=ButtonStyle.DANGER,   icon_custom_emoji_id=_E_PIN),
+            InlineKeyboardButton("ɪɴꜰᴏ",          callback_data="mplus HELP_Info",    style=ButtonStyle.PRIMARY,  icon_custom_emoji_id=_E_INFO),
+            InlineKeyboardButton("ᴇxᴛʀᴀ",         callback_data="mplus HELP_Extra",   style=ButtonStyle.SUCCESS,  icon_custom_emoji_id=_E_SPARK),
         ],
         [
-            InlineKeyboardButton("ɪᴍᴀɢᴇ",         callback_data="mplus HELP_Image",  icon_custom_emoji_id=_E_ROSE),
-            InlineKeyboardButton("ᴀᴄᴛɪᴏɴ",        callback_data="mplus HELP_Action",   icon_custom_emoji_id=_E_BOLT),
-            InlineKeyboardButton("sᴇᴀʀᴄʜ",        callback_data="mplus HELP_Search",  icon_custom_emoji_id=_E_SEARCH),
+            InlineKeyboardButton("ɪᴍᴀɢᴇ",         callback_data="mplus HELP_Image",   style=ButtonStyle.SUCCESS,  icon_custom_emoji_id=_E_ROSE),
+            InlineKeyboardButton("ᴀᴄᴛɪᴏɴ",        callback_data="mplus HELP_Action",  style=ButtonStyle.DANGER,   icon_custom_emoji_id=_E_BOLT),
+            InlineKeyboardButton("sᴇᴀʀᴄʜ",        callback_data="mplus HELP_Search",  style=ButtonStyle.PRIMARY,  icon_custom_emoji_id=_E_SEARCH),
         ],
         [
-            InlineKeyboardButton("ғᴏɴᴛ",           callback_data="mplus HELP_Font",  icon_custom_emoji_id=_E_CHAT),
-            InlineKeyboardButton("ɢᴀᴍᴇs",          callback_data="mplus HELP_Game",  icon_custom_emoji_id=_E_JOKER),
-            InlineKeyboardButton("ᴛ-ɢʀᴀᴘʜ",        callback_data="mplus HELP_TG",   icon_custom_emoji_id=_E_CHART),
+            InlineKeyboardButton("ғᴏɴᴛ",           callback_data="mplus HELP_Font",    style=ButtonStyle.PRIMARY,  icon_custom_emoji_id=_E_CHAT),
+            InlineKeyboardButton("ɢᴀᴍᴇs",          callback_data="mplus HELP_Game",    style=ButtonStyle.SUCCESS,  icon_custom_emoji_id=_E_JOKER),
+            InlineKeyboardButton("ᴛ-ɢʀᴀᴘʜ",        callback_data="mplus HELP_TG",      style=ButtonStyle.DANGER,   icon_custom_emoji_id=_E_CHART),
         ],
         [
-            InlineKeyboardButton("ɪᴍᴘᴏsᴛᴇʀ",      callback_data="mplus HELP_Imposter",   icon_custom_emoji_id=_E_CLOWN),
-            InlineKeyboardButton("ᴛʀᴜᴛʜ-ᴅᴀʀᴇ",    callback_data="mplus HELP_TD",  icon_custom_emoji_id=_E_CRYSTAL),
-            InlineKeyboardButton("ʜᴀsᴛᴀɢ",         callback_data="mplus HELP_HT",  icon_custom_emoji_id=_E_LINK),
+            InlineKeyboardButton("ɪᴍᴘᴏsᴛᴇʀ",      callback_data="mplus HELP_Imposter",style=ButtonStyle.DANGER,   icon_custom_emoji_id=_E_CLOWN),
+            InlineKeyboardButton("ᴛʀᴜᴛʜ-ᴅᴀʀᴇ",    callback_data="mplus HELP_TD",      style=ButtonStyle.PRIMARY,  icon_custom_emoji_id=_E_CRYSTAL),
+            InlineKeyboardButton("ʜᴀsᴛᴀɢ",         callback_data="mplus HELP_HT",      style=ButtonStyle.SUCCESS,  icon_custom_emoji_id=_E_LINK),
         ],
         [
-            InlineKeyboardButton("ᴛᴛs",             callback_data="mplus HELP_TTS",  icon_custom_emoji_id=_E_MIC),
-            InlineKeyboardButton("ғᴜɴ",             callback_data="mplus HELP_Fun",  icon_custom_emoji_id=_E_PARTY),
-            InlineKeyboardButton("ǫᴜᴏᴛʟʏ",         callback_data="mplus HELP_Q",   icon_custom_emoji_id=_E_MEGA),
+            InlineKeyboardButton("ᴛᴛs",             callback_data="mplus HELP_TTS",     style=ButtonStyle.SUCCESS,  icon_custom_emoji_id=_E_MIC),
+            InlineKeyboardButton("ғᴜɴ",             callback_data="mplus HELP_Fun",     style=ButtonStyle.PRIMARY,  icon_custom_emoji_id=_E_PARTY),
+            InlineKeyboardButton("ǫᴜᴏᴛʟʏ",         callback_data="mplus HELP_Q",       style=ButtonStyle.DANGER,   icon_custom_emoji_id=_E_MEGA),
         ],
         [
-            InlineKeyboardButton("💰 ᴄʀʏᴘᴛᴏ",      callback_data="mplus HELP_Crypto",  icon_custom_emoji_id=_E_CHART),
-            InlineKeyboardButton("💸 ᴜᴘɪ ᴛᴏᴏʟs",   callback_data="mplus HELP_UPI",  icon_custom_emoji_id=_E_BOLT),
+            InlineKeyboardButton("💰 ᴄʀʏᴘᴛᴏ",      callback_data="mplus HELP_Crypto",  style=ButtonStyle.PRIMARY,  icon_custom_emoji_id=_E_CHART),
+            InlineKeyboardButton("💸 ᴜᴘɪ ᴛᴏᴏʟs",   callback_data="mplus HELP_UPI",     style=ButtonStyle.SUCCESS,  icon_custom_emoji_id=_E_BOLT),
         ],
         [
-            InlineKeyboardButton("◁", callback_data="settings_back_helper",  icon_custom_emoji_id=_E_BACK),
-            InlineKeyboardButton("▷", callback_data="managebot123 settings_back_helper", icon_custom_emoji_id=_E_PLAY),
+            InlineKeyboardButton("◁", callback_data="settings_back_helper",            style=ButtonStyle.SUCCESS,  icon_custom_emoji_id=_E_BACK),
+            InlineKeyboardButton("▷", callback_data="managebot123 settings_back_helper",style=ButtonStyle.PRIMARY, icon_custom_emoji_id=_E_PLAY),
         ],
     ]
