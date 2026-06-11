@@ -18,6 +18,23 @@ from pyrogram.errors.exceptions.bad_request_400 import ChatAdminRequired, UserAd
 import datetime
 from SHUKLAMUSIC import app
 
+# ── KripanshEmojis_by_fStikBot pack IDs ──
+_KE_BAN    = 6129906126625447892   # 🔒
+_KE_UNBAN  = 6129812419028982717   # ✅
+_KE_MUTE   = 6129805465476929485   # ⚡
+_KE_SKULL  = 6132184924603554220   # 💀
+_KE_WARN   = 6129782440157256336   # ⚠️
+_KE_STAR   = 6129915811776698328   # 🌟
+_KE_ANGRY  = 6129530544620314433   # 🤬
+_KE_ANGEL  = 6129518870899203008   # 👼
+_KE_CROWN  = 6129705083501293112   # 👑
+_KE_BLOCK  = 6129840374971112593   # 🚫
+_KE_FIRE   = 6129792056589031358   # 🔥
+_KE_OK     = 6129705667616841573   # 👍
+
+def ke(eid, fb):
+    return f'<emoji id={eid}>{fb}</emoji>'
+
 def mention(user, name, mention=True):
     if mention:
         link = f"[{name}](tg://openmessage?user_id={user})"
@@ -46,23 +63,31 @@ async def ban_user(user_id, first_name, admin_id, admin_name, chat_id, reason, t
 
     user_mention = mention(user_id, first_name)
     admin_mention = mention(admin_id, admin_name)
-    msg_text = f"{user_mention} was banned by {admin_mention}\n\n"
+    msg_text = (
+        f"{ke(_KE_SKULL,'💀')} {ke(_KE_BAN,'🔒')} <b>ᴜsᴇʀ ʙᴀɴɴᴇᴅ</b>\n\n"
+        f"{ke(_KE_BLOCK,'🚫')} <b>ᴜsᴇʀ :</b> {user_mention}\n"
+        f"{ke(_KE_CROWN,'👑')} <b>ᴀᴅᴍɪɴ :</b> {admin_mention}\n"
+    )
     if reason:
-        msg_text += f"Reason: `{reason}`\n"
+        msg_text += f"{ke(_KE_WARN,'⚠️')} <b>ʀᴇᴀsᴏɴ :</b> <code>{reason}</code>\n"
     if time:
-        msg_text += f"Time: `{time}`\n"
+        msg_text += f"{ke(_KE_FIRE,'🔥')} <b>ᴛɪᴍᴇ :</b> <code>{time}</code>\n"
     return msg_text, True
 
 async def unban_user(user_id, first_name, admin_id, admin_name, chat_id):
     try:
         await app.unban_chat_member(chat_id, user_id)
     except ChatAdminRequired:
-        return "Make sure that you have given me that right"
+        return f"{ke(_KE_WARN,'⚠️')} Make sure that you have given me that right"
     except Exception as e:
-        return f"Oops!!\n{e}"
+        return f"{ke(_KE_ANGRY,'🤬')} Oops!!\n{e}"
     user_mention = mention(user_id, first_name)
     admin_mention = mention(admin_id, admin_name)
-    return f"{user_mention} was unbanned by {admin_mention}"
+    return (
+        f"{ke(_KE_UNBAN,'✅')} {ke(_KE_ANGEL,'👼')} <b>ᴜsᴇʀ ᴜɴʙᴀɴɴᴇᴅ</b>\n\n"
+        f"{ke(_KE_OK,'👍')} <b>ᴜsᴇʀ :</b> {user_mention}\n"
+        f"{ke(_KE_CROWN,'👑')} <b>ᴀᴅᴍɪɴ :</b> {admin_mention}"
+    )
 
 async def mute_user(user_id, first_name, admin_id, admin_name, chat_id, reason, time=None):
     try:
@@ -82,11 +107,15 @@ async def mute_user(user_id, first_name, admin_id, admin_name, chat_id, reason, 
 
     user_mention = mention(user_id, first_name)
     admin_mention = mention(admin_id, admin_name)
-    msg_text = f"{user_mention} was muted by {admin_mention}\n\n"
+    msg_text = (
+        f"{ke(_KE_MUTE,'⚡')} {ke(_KE_BAN,'🔒')} <b>ᴜsᴇʀ ᴍᴜᴛᴇᴅ</b>\n\n"
+        f"{ke(_KE_BLOCK,'🚫')} <b>ᴜsᴇʀ :</b> {user_mention}\n"
+        f"{ke(_KE_CROWN,'👑')} <b>ᴀᴅᴍɪɴ :</b> {admin_mention}\n"
+    )
     if reason:
-        msg_text += f"Reason: `{reason}`\n"
+        msg_text += f"{ke(_KE_WARN,'⚠️')} <b>ʀᴇᴀsᴏɴ :</b> <code>{reason}</code>\n"
     if time:
-        msg_text += f"Time: `{time}`\n"
+        msg_text += f"{ke(_KE_FIRE,'🔥')} <b>ᴛɪᴍᴇ :</b> <code>{time}</code>\n"
     return msg_text, True
 
 async def unmute_user(user_id, first_name, admin_id, admin_name, chat_id):
@@ -104,12 +133,16 @@ async def unmute_user(user_id, first_name, admin_id, admin_name, chat_id):
             )
         )
     except ChatAdminRequired:
-        return "Make sure that you have given me that right"
+        return f"{ke(_KE_WARN,'⚠️')} Make sure that you have given me that right"
     except Exception as e:
-        return f"Oops!!\n{e}"
+        return f"{ke(_KE_ANGRY,'🤬')} Oops!!\n{e}"
     user_mention = mention(user_id, first_name)
     admin_mention = mention(admin_id, admin_name)
-    return f"{user_mention} was unmuted by {admin_mention}"
+    return (
+        f"{ke(_KE_UNBAN,'✅')} {ke(_KE_ANGEL,'👼')} <b>ᴜsᴇʀ ᴜɴᴍᴜᴛᴇᴅ</b>\n\n"
+        f"{ke(_KE_OK,'👍')} <b>ᴜsᴇʀ :</b> {user_mention}\n"
+        f"{ke(_KE_CROWN,'👑')} <b>ᴀᴅᴍɪɴ :</b> {admin_mention}"
+    )
 
 @app.on_message(filters.command(["ban"]))
 async def ban_command_handler(client, message):
@@ -146,7 +179,7 @@ async def ban_command_handler(client, message):
         msg_text, result = await ban_user(user_id, first_name, admin_id, admin_name, chat_id, reason)
         await message.reply_text(msg_text)
     else:
-        await message.reply_text("You don't have permission to ban someone")
+        await message.reply_text(f"{ke(_KE_BLOCK,'🚫')} <b>ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴘᴇʀᴍɪssɪᴏɴ ᴛᴏ ʙᴀɴ sᴏᴍᴇᴏɴᴇ</b>")
 
 @app.on_message(filters.command(["unban"]))
 async def unban_command_handler(client, message):
@@ -176,7 +209,7 @@ async def unban_command_handler(client, message):
         msg_text = await unban_user(user_id, first_name, admin_id, admin_name, chat_id)
         await message.reply_text(msg_text)
     else:
-        await message.reply_text("You don't have permission to unban someone")
+        await message.reply_text(f"{ke(_KE_BLOCK,'🚫')} <b>ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴘᴇʀᴍɪssɪᴏɴ ᴛᴏ ᴜɴʙᴀɴ sᴏᴍᴇᴏɴᴇ</b>")
 
 @app.on_message(filters.command(["mute"]))
 async def mute_command_handler(client, message):
@@ -213,7 +246,7 @@ async def mute_command_handler(client, message):
         msg_text, result = await mute_user(user_id, first_name, admin_id, admin_name, chat_id, reason)
         await message.reply_text(msg_text)
     else:
-        await message.reply_text("You don't have permission to mute someone")
+        await message.reply_text(f"{ke(_KE_BLOCK,'🚫')} <b>ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴘᴇʀᴍɪssɪᴏɴ ᴛᴏ ᴍᴜᴛᴇ sᴏᴍᴇᴏɴᴇ</b>")
 
 @app.on_message(filters.command(["unmute"]))
 async def unmute_command_handler(client, message):
@@ -243,7 +276,7 @@ async def unmute_command_handler(client, message):
         msg_text = await unmute_user(user_id, first_name, admin_id, admin_name, chat_id)
         await message.reply_text(msg_text)
     else:
-        await message.reply_text("You don't have permission to unmute someone")
+        await message.reply_text(f"{ke(_KE_BLOCK,'🚫')} <b>ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴘᴇʀᴍɪssɪᴏɴ ᴛᴏ ᴜɴᴍᴜᴛᴇ sᴏᴍᴇᴏɴᴇ</b>")
 
 @app.on_message(filters.command(["tmute"]))
 async def tmute_command_handler(client, message):
