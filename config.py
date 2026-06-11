@@ -26,38 +26,41 @@ API_HASH = getenv("API_HASH")
 BOT_TOKEN = getenv("BOT_TOKEN")
 
 # Bot and owner info
-OWNER_USERNAME = getenv("OWNER_USERNAME", "@Egoist_Destroyer")
-BOT_USERNAME = getenv("BOT_USERNAME", "@HINATA_MUSIC_PLAYER_BOT")
-BOT_NAME = getenv("BOT_NAME", "HINATA")
-ASSUSERNAME = getenv("ASSUSERNAME", "KHWAAISH_HOON")
+OWNER_USERNAME = getenv("OWNER_USERNAME", "II_YOUR_MADARA_DEFAULTER_II")
+BOT_USERNAME = getenv("BOT_USERNAME", "RADHA_MUSIC_GMS_op_bot")
+BOT_NAME = getenv("BOT_NAME", "Radha")
+ASSUSERNAME = getenv("ASSUSERNAME", "Aiused")
+
 
 # MongoDB
 MONGO_DB_URI = getenv("MONGO_DB_URI", None)
 
 # Limits and IDs
 DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 17000))
-LOGGER_ID = int(getenv("LOGGER_ID", -1003939120486))
-OWNER_ID = int(getenv("OWNER_ID", 2145828547))
+LOGGER_ID = int(getenv("LOGGER_ID", None))
+OWNER_ID = int(getenv("OWNER_ID", 8441236350))
 
 # Heroku
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
-DEEP_API = getenv("DEEP_API")
 
 # Git
-UPSTREAM_REPO = getenv("UPSTREAM_REPO", "https://github.com/itzshukla/STRANGER-MUSIC")
+UPSTREAM_REPO = getenv("UPSTREAM_REPO", "https://github.com/ragini19854-prog/madara_x_radha")
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "main")
 GIT_TOKEN = getenv("GIT_TOKEN", None)
 
 # Support
 SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/+1NRRqUd1replNTM1")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/MADARA_X_SUPPORT")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/+n7E6Q19lY0cxNDBl")
 
 # Assistant settings
 AUTO_LEAVING_ASSISTANT = getenv("AUTO_LEAVING_ASSISTANT", "True")
 AUTO_LEAVE_ASSISTANT_TIME = int(getenv("ASSISTANT_LEAVE_TIME", "9000"))
 
-# Song download limits
+
+# Server limits and configurations - These can be set based on your server configurations
+SERVER_PLAYLIST_LIMIT = int(getenv("SERVER_PLAYLIST_LIMIT", "3000"))
+PLAYLIST_FETCH_LIMIT = int(getenv("PLAYLIST_FETCH_LIMIT", "2500"))
 SONG_DOWNLOAD_DURATION = int(getenv("SONG_DOWNLOAD_DURATION", "9999999"))
 SONG_DOWNLOAD_DURATION_LIMIT = int(getenv("SONG_DOWNLOAD_DURATION_LIMIT", "9999999"))
 
@@ -89,38 +92,23 @@ votemode = {}
 autoclean = []
 confirmer = {}
 
-DEBUG_IGNORE_LOG = True
-
-###### IMAGE URLS ######
-
-START_IMG_URL = getenv("START_IMG_URL", "https://i.ibb.co/qY7BD4SY/image.jpg")
-PING_IMG_URL = getenv("PING_IMG_URL", "https://i.ibb.co/qY7BD4SY/image.jpg")
-PLAYLIST_IMG_URL = "https://files.catbox.moe/lrwbj6.jpg"
-STATS_IMG_URL = "https://files.catbox.moe/ak96mx.jpg"
-TELEGRAM_AUDIO_URL = "https://files.catbox.moe/aesldg.jpg"
-TELEGRAM_VIDEO_URL = "https://files.catbox.moe/aesldg.jpg"
-STREAM_IMG_URL = "https://files.catbox.moe/aesldg.jpg"
-SOUNCLOUD_IMG_URL = "https://files.catbox.moe/aesldg.jpg"
-YOUTUBE_IMG_URL = "https://files.catbox.moe/aesldg.jpg"
-SPOTIFY_ARTIST_IMG_URL = "https://files.catbox.moe/aesldg.jpg"
-SPOTIFY_ALBUM_IMG_URL = "https://files.catbox.moe/aesldg.jpg"
-SPOTIFY_PLAYLIST_IMG_URL = "https://files.catbox.moe/aesldg.jpg"
-
-
-SHASHANK_IMG = [
-    "https://files.catbox.moe/dw0as6.jpg",
-    "https://files.catbox.moe/t2m1pv.jpg",
-    "https://files.catbox.moe/lsbotb.jpg",
-    "https://files.catbox.moe/huuy1f.jpg",
-    "https://files.catbox.moe/7vfivr.jpg",
-    "https://files.catbox.moe/dqtuv2.jpg",
-    "https://files.catbox.moe/ac3tzn.jpg"
-]
+# Image URLs
+START_IMG_URL = getenv("START_IMG_URL", "https://files.catbox.moe/5go4t6.jpg")
+PING_IMG_URL = getenv("PING_IMG_URL", "https://files.catbox.moe/ohezme.jpg")
+PLAYLIST_IMG_URL = "https://files.catbox.moe/ohezme.jpg"
+STATS_IMG_URL = "https://files.catbox.moe/ohezme.jpg"
+TELEGRAM_AUDIO_URL = "https://files.catbox.moe/ohezme.jpg"
+TELEGRAM_VIDEO_URL = "https://files.catbox.moe/ohezme.jpg"
+STREAM_IMG_URL = "https://files.catbox.moe/ohezme.jpg"
+SOUNCLOUD_IMG_URL = "https://files.catbox.moe/ohezme.jpg"
+YOUTUBE_IMG_URL = "https://files.catbox.moe/ohezme.jpg"
+SPOTIFY_ARTIST_IMG_URL = "https://files.catbox.moe/ohezme.jpg"
+SPOTIFY_ALBUM_IMG_URL = "https://files.catbox.moe/ohezme.jpg"
+SPOTIFY_PLAYLIST_IMG_URL = "https://files.catbox.moe/ohezme.jpg"
 
 
 # Helper function
 def time_to_seconds(time: str) -> int:
-    """Convert time string (MM:SS) to total seconds."""
     return sum(int(x) * 60**i for i, x in enumerate(reversed(time.split(":"))))
 
 # Calculate total duration limit in seconds
@@ -128,7 +116,11 @@ DURATION_LIMIT = int(time_to_seconds(f"{DURATION_LIMIT_MIN}:00"))
 
 # Validate URLs
 if SUPPORT_CHANNEL and not re.match(r"(?:http|https)://", SUPPORT_CHANNEL):
-    raise SystemExit("[ERROR] - Your SUPPORT_CHANNEL url is invalid. It must start with https://")
+    raise SystemExit(
+        "[ERROR] - Your SUPPORT_CHANNEL url is invalid. It must start with https://"
+    )
 
 if SUPPORT_CHAT and not re.match(r"(?:http|https)://", SUPPORT_CHAT):
-    raise SystemExit("[ERROR] - Your SUPPORT_CHAT url is invalid. It must start with https://")
+    raise SystemExit(
+        "[ERROR] - Your SUPPORT_CHAT url is invalid. It must start with https://"
+    )
