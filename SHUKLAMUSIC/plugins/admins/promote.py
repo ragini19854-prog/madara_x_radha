@@ -17,6 +17,21 @@ from pyrogram.errors import ChatAdminRequired
 from functools import wraps
 from SHUKLAMUSIC import app
 
+# ── KripanshEmojis_by_fStikBot pack IDs ──
+_KE_CROWN  = 6129705083501293112   # 👑
+_KE_STAR   = 6129915811776698328   # 🌟
+_KE_FIRE   = 6129792056589031358   # 🔥
+_KE_WARN   = 6129782440157256336   # ⚠️
+_KE_OK     = 6129812419028982717   # ✅
+_KE_BLOCK  = 6129840374971112593   # 🚫
+_KE_SKULL  = 6132184924603554220   # 💀
+_KE_ANGRY  = 6129530544620314433   # 🤬
+_KE_ELITE  = 6129509499280563691   # 💎
+_KE_ANGEL  = 6129518870899203008   # 👼
+
+def ke(eid, fb):
+    return f'<emoji id={eid}>{fb}</emoji>'
+
 def mention(user_id, name):
     return f"[{name}](tg://user?id={user_id})"
 
@@ -78,11 +93,15 @@ async def extract_user_and_title(message, client):
     return user.id, user.first_name, title
 
 def format_promotion_message(chat_name, user_mention, admin_mention, action):
-    action_text = "ᴩʀᴏᴍᴏᴛɪɴɢ" if action == "promote" else "ᴅᴇᴍᴏᴛɪɴɢ"
+    if action == "promote":
+        hdr = f"{ke(_KE_CROWN,'👑')} {ke(_KE_STAR,'🌟')} <b>ᴜsᴇʀ ᴩʀᴏᴍᴏᴛᴇᴅ</b>"
+    else:
+        hdr = f"{ke(_KE_SKULL,'💀')} {ke(_KE_BLOCK,'🚫')} <b>ᴜsᴇʀ ᴅᴇᴍᴏᴛᴇᴅ</b>"
     return (
-        f"» {action_text} ᴀ ᴜsᴇʀ ɪɴ {chat_name}\n"
-        f"ᴜsᴇʀ : {user_mention}\n"
-        f"ᴀᴅᴍɪɴ : {admin_mention}"
+        f"{hdr}\n\n"
+        f"{ke(_KE_ELITE,'💎')} <b>ᴄʜᴀᴛ :</b> {chat_name}\n"
+        f"{ke(_KE_FIRE,'🔥')} <b>ᴜsᴇʀ :</b> {user_mention}\n"
+        f"{ke(_KE_CROWN,'👑')} <b>ᴀᴅᴍɪɴ :</b> {admin_mention}"
     )
 
 @app.on_message(filters.command("promote"))
