@@ -16,7 +16,6 @@ import math
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from SHUKLAMUSIC import app
 import config
-from pyrogram.enums import ButtonStyle
 from SHUKLAMUSIC.utils.formatters import time_to_seconds
 
 
@@ -72,31 +71,25 @@ def stream_markup_timer(_, chat_id, played, dur):
         [
             InlineKeyboardButton(
                 text=f"{played} {bar} {dur}",
-                callback_data="GetTimer",
-                style=ButtonStyle.PRIMARY,
-                icon_custom_emoji_id=5204046146955153467
+                callback_data="GetTimer"
             )
         ],
         [
-            InlineKeyboardButton(text="", callback_data=f"ADMIN Resume|{chat_id}", icon_custom_emoji_id=5409222721869459068, style=ButtonStyle.SUCCESS),
-            InlineKeyboardButton(text="", callback_data=f"ADMIN Pause|{chat_id}", icon_custom_emoji_id=5409042015415448331, style=ButtonStyle.PRIMARY),
-            InlineKeyboardButton(text="", callback_data=f"ADMIN Stop|{chat_id}", icon_custom_emoji_id=5408832111773757273, style=ButtonStyle.DANGER),
+            InlineKeyboardButton(text="", callback_data=f"ADMIN Resume|{chat_id}"),
+            InlineKeyboardButton(text="", callback_data=f"ADMIN Pause|{chat_id}"),
+            InlineKeyboardButton(text="", callback_data=f"ADMIN Stop|{chat_id}"),
         ],
         [
             InlineKeyboardButton(
                 text="ᴜᴘᴅᴀᴛᴇ",
-                url=config.SUPPORT_CHANNEL,
-                icon_custom_emoji_id=5409025823388741707,
-                style=ButtonStyle.SUCCESS
+                url=config.SUPPORT_CHANNEL
             ),
             InlineKeyboardButton(
                 text="sᴜᴘᴘᴏꝛᴛ",
-                url=config.SUPPORT_CHAT,
-                icon_custom_emoji_id=5409194306365829029,
-                style=ButtonStyle.PRIMARY
+                url=config.SUPPORT_CHAT
             )
         ],
-        [InlineKeyboardButton(text=" ᴄʟᴏsᴇ ▣", callback_data="close", style=ButtonStyle.DANGER, icon_custom_emoji_id=5408832111773757273)],
+        [InlineKeyboardButton(text=" ᴄʟᴏsᴇ ▣", callback_data="close")],
     ]
     return buttons
 
@@ -104,25 +97,21 @@ def stream_markup_timer(_, chat_id, played, dur):
 def stream_markup(_, chat_id):
     buttons = [
         [
-            InlineKeyboardButton(text="", callback_data=f"ADMIN Resume|{chat_id}", icon_custom_emoji_id=5409222721869459068, style=ButtonStyle.SUCCESS),
-            InlineKeyboardButton(text="", callback_data=f"ADMIN Pause|{chat_id}", icon_custom_emoji_id=5409042015415448331, style=ButtonStyle.PRIMARY),
-            InlineKeyboardButton(text="", callback_data=f"ADMIN Stop|{chat_id}", icon_custom_emoji_id=5408832111773757273, style=ButtonStyle.DANGER),
+            InlineKeyboardButton(text="", callback_data=f"ADMIN Resume|{chat_id}"),
+            InlineKeyboardButton(text="", callback_data=f"ADMIN Pause|{chat_id}"),
+            InlineKeyboardButton(text="", callback_data=f"ADMIN Stop|{chat_id}"),
         ],
         [
             InlineKeyboardButton(
                 text="ᴜᴘᴅᴀᴛᴇ",
-                url=config.SUPPORT_CHANNEL,
-                icon_custom_emoji_id=5409025823388741707,
-                style=ButtonStyle.SUCCESS
+                url=config.SUPPORT_CHANNEL
             ),
             InlineKeyboardButton(
                 text="sᴜᴘᴘᴏꝛᴛ",
-                url=config.SUPPORT_CHAT,
-                icon_custom_emoji_id=5409194306365829029,
-                style=ButtonStyle.PRIMARY
+                url=config.SUPPORT_CHAT
             )
         ],
-        [InlineKeyboardButton(text=" ᴄʟᴏsᴇ ▣", callback_data="close", style=ButtonStyle.DANGER, icon_custom_emoji_id=5408832111773757273)],
+        [InlineKeyboardButton(text=" ᴄʟᴏsᴇ ▣", callback_data="close")],
     ]
     return buttons
 
