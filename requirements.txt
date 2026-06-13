@@ -66,6 +66,6 @@ tgcrypto>=1.2.5
 unidecode
 wget
 yt-dlp
-py-yt
+youtube-search-python
 
 
