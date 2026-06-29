@@ -1,22 +1,23 @@
+````markdown
 <div align="center">
 
-<img src="assets/radha.jpg" width="100%" alt="Radha Music">
+<img src="assets/radha.jpg" width="100%" alt="Radha Music Banner">
 
 # ✨ 𝐑ᴀᴅʜᴀ ✕ 𝐌ᴜsɪᴄ ♪
 
-### ᴇʟᴇɢᴀɴᴛ • ғᴀsᴛ • ᴘʀᴇᴍɪᴜᴍ • ᴘᴏᴡᴇʀғᴜʟ
+### ᴘʀᴇᴍɪᴜᴍ • ꜰᴀꜱᴛ • ꜱᴛᴀʙʟᴇ • ᴇʟᴇɢᴀɴᴛ
 
-<img src="https://readme-typing-svg.demolab.com?font=Poppins&weight=700&size=24&pause=1000&center=true&vCenter=true&width=900&lines=Premium+Telegram+Music+Bot;Crystal+Clear+Audio+Streaming;Ultra+Fast+Playback;Modern+Premium+Experience;Made+With+❤+For+Telegram" />
+<img src="https://readme-typing-svg.demolab.com?font=Poppins&weight=700&size=25&duration=3000&pause=1000&color=F7C873&center=true&vCenter=true&width=900&lines=Premium+Telegram+Music+Bot;Crystal+Clear+Music+Streaming;Video+Streaming+%26+Voice+Chat;Modern+Premium+Experience;Made+With+❤+By+Madara" />
 
 <p align="center">
 
-<img src="https://img.shields.io/github/stars/USERNAME/Radha-Music?style=for-the-badge&color=ffb703">
+<img src="https://img.shields.io/github/stars/USERNAME/Radha-Music?style=for-the-badge&logo=github&color=FFD700">
 
-<img src="https://img.shields.io/github/forks/USERNAME/Radha-Music?style=for-the-badge&color=8ecae6">
+<img src="https://img.shields.io/github/forks/USERNAME/Radha-Music?style=for-the-badge&logo=github&color=F4A261">
 
-<img src="https://img.shields.io/github/license/USERNAME/Radha-Music?style=for-the-badge&color=90be6d">
+<img src="https://img.shields.io/github/issues/USERNAME/Radha-Music?style=for-the-badge&color=E76F51">
 
-<img src="https://img.shields.io/github/issues/USERNAME/Radha-Music?style=for-the-badge&color=f94144">
+<img src="https://img.shields.io/github/license/USERNAME/Radha-Music?style=for-the-badge&color=2A9D8F">
 
 <img src="https://img.shields.io/badge/Python-3.11-blue?style=for-the-badge&logo=python">
 
@@ -24,65 +25,75 @@
 
 </p>
 
-</div>
+<img src="https://capsule-render.vercel.app/api?type=waving&height=140&color=gradient&customColorList=17,18,19,20"/>
 
----
+</div>
 
 # 🌸 About Radha Music
 
-**Radha Music** is a premium Telegram Music Bot designed with elegance, speed, and stability in mind.
+Radha Music is a next-generation Telegram Music Bot built for speed, beauty and reliability.
 
-Built for music lovers, it delivers a smooth playback experience with beautiful UI, high-quality streaming, and powerful management tools.
+Enjoy lag-free playback, premium buttons, crystal-clear audio, beautiful interface and powerful management features.
 
-Whether you're listening alone or managing a large Telegram group, Radha Music provides a seamless experience with modern features and premium aesthetics.
+Designed to provide one of the smoothest music experiences on Telegram.
 
 ---
 
-# ✨ Premium Features
+# 🎥 Demo Video
 
-🎵 High Quality Audio Streaming
+> **If GitHub doesn't display the video player, click the link below.**
 
-🎬 Video Playback
+https://files.catbox.moe/n9qfuo.mp4
 
-📺 Live Stream Support
+<video src="https://files.catbox.moe/n9qfuo.mp4" controls autoplay muted loop width="100%"></video>
 
-🎧 Crystal Clear Sound
+---
 
-⚡ Ultra Fast Response
+# ✨ Features
 
-🔁 Queue System
+### 🎵 Music
 
-🔂 Loop Modes
+- HQ Audio Streaming
+- Video Streaming
+- Live Stream
+- Queue System
+- Loop Playback
+- Playlist Support
+- Shuffle Queue
+- Volume Control
+- Seek Music
+- Auto Resume
 
-📜 Lyrics
+### 🎬 Videos
 
-🎤 Song Information
+- HD Video Playback
+- Stream from YouTube
+- Live Video Chat
+- Smooth Buffering
 
-🎼 Playlist Support
+### 🤖 Smart
 
-❤️ Favorites
+- Lyrics
+- Song Download
+- Artist Information
+- Auto Playlist
+- Recommendation System
 
-🎚 Volume Controller
+### 🛡 Security
 
-🔎 YouTube Search
+- Anti Spam
+- Anti Flood
+- Group Protection
+- Secure Environment
+- Fast Recovery
 
-🎙 Voice Chat Streaming
+### 💎 Premium
 
-💎 Premium Buttons
-
-🌸 Elegant Interface
-
-🛡 Anti Spam Protection
-
-🚫 Anti Flood Protection
-
-⚙ Easy Configuration
-
-☁ Multiple Deployment Options
-
-🔒 Secure Environment Variables
-
-📈 Optimized Performance
+- Premium Buttons
+- Premium Emojis
+- Beautiful UI
+- Lightning Fast
+- Optimized Performance
 
 ---
 
@@ -90,7 +101,7 @@ Whether you're listening alone or managing a large Telegram group, Radha Music p
 
 <p align="center">
 
-<img src="assets/radha.jpg" width="500">
+<img src="assets/radha.jpg" width="450">
 
 </p>
 
@@ -99,7 +110,7 @@ Whether you're listening alone or managing a large Telegram group, Radha Music p
 # 🚀 Installation
 
 ```bash
-git clone https://github.com/USERNAME/Radha-Music.git
+git clone https://github.com/USERNAME/Radha-Music
 
 cd Radha-Music
 
@@ -110,7 +121,7 @@ python3 -m Radha
 
 ---
 
-# ⚙ Required Variables
+# ⚙ Environment Variables
 
 | Variable | Description |
 |----------|-------------|
@@ -119,70 +130,89 @@ python3 -m Radha
 | BOT_TOKEN | Telegram Bot Token |
 | STRING_SESSION | Assistant String |
 | MONGO_DB_URI | Mongo Database |
-| OWNER_ID | Bot Owner |
+| OWNER_ID | Owner ID |
 | LOG_GROUP_ID | Logger Group |
+| SUPPORT_CHAT | Support Group |
 
 ---
 
 # 🎵 Commands
 
 | Command | Description |
-|----------|-------------|
+|---------|-------------|
 | /play | Play Music |
 | /vplay | Play Video |
-| /pause | Pause Playback |
-| /resume | Resume Playback |
+| /pause | Pause |
+| /resume | Resume |
 | /skip | Skip Song |
 | /queue | Queue List |
-| /end | Stop Player |
-| /lyrics | Song Lyrics |
+| /end | Stop Playback |
+| /lyrics | Lyrics |
 | /song | Download Song |
-| /ping | Bot Speed |
+| /ping | Ping |
 | /stats | Statistics |
 | /alive | Bot Status |
 
 ---
 
-# 🌟 Why Radha Music?
+# 💎 Why Choose Radha Music?
 
-✔ Elegant Design
+⭐ Crystal Clear Audio
 
-✔ Premium Interface
+⭐ Fastest Playback
 
-✔ Lightning Fast
+⭐ Elegant UI
 
-✔ Stable Playback
+⭐ Video Streaming
 
-✔ Modern Architecture
+⭐ Playlist Support
 
-✔ Active Development
+⭐ Queue Management
 
-✔ Easy Deployment
+⭐ Secure & Stable
 
-✔ Open Source
+⭐ Open Source
+
+⭐ Easy Deployment
+
+⭐ Premium Experience
+
+---
+
+# 🌍 Deploy
+
+- VPS
+- Railway
+- Render
+- Docker
+- Local Machine
 
 ---
 
 # 📊 Repository Stats
 
-⭐ Don't forget to Star the Repository
+⭐ Star the Repository
 
-🍴 Fork the Project
+🍴 Fork the Repository
 
 🐞 Report Bugs
 
 💡 Suggest Features
 
-❤️ Support Development
+❤️ Contribute
 
 ---
 
 <div align="center">
 
-## 💖 Thank You For Visiting
+## 💖 Support The Project
 
-**Made with ❤️ for the Telegram Community**
+If you like **Radha Music**, please give this repository a ⭐.
 
-⭐ Star this Repository if you like the project.
+Made with ❤️ by **Madara**
+
+<img src="https://capsule-render.vercel.app/api?type=waving&section=footer&height=140&color=gradient&customColorList=17,18,19,20"/>
 
 </div>
+````
+
