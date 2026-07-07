@@ -9,18 +9,18 @@ import asyncio
 import os
 import random
 import re
+import time as _time
 from typing import Union
 import yt_dlp
 from pyrogram.enums import MessageEntityType
 from pyrogram.types import Message
-from py_yt import VideosSearch, Playlist
+from py_yt import Playlist
 
 DOWNLOAD_DIR = "downloads"
 COOKIES_FILE = os.path.join(os.getcwd(), "SHUKLAMUSIC", "assets", "cookies.txt")
 
-import time as _time
 _SEARCH_CACHE: dict = {}
-_SEARCH_CACHE_TTL = 300
+_SEARCH_CACHE_TTL = 180
 
 
 def _cookiefile():
@@ -30,6 +30,28 @@ def _cookiefile():
 def time_to_seconds(time):
     stringt = str(time)
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
+
+
+def _seconds_to_min(sec: int) -> str:
+    if not sec:
+        return "0:00"
+    h, rem = divmod(int(sec), 3600)
+    m, s = divmod(rem, 60)
+    return f"{h}:{m:02d}:{s:02d}" if h else f"{m}:{s:02d}"
+
+
+def _format_views(n) -> str:
+    try:
+        n = int(n)
+    except (TypeError, ValueError):
+        return "Unknown Views"
+    if n >= 1_000_000_000:
+        return f"{n / 1_000_000_000:.1f}B views"
+    if n >= 1_000_000:
+        return f"{n / 1_000_000:.1f}M views"
+    if n >= 1_000:
+        return f"{n / 1_000:.1f}K views"
+    return f"{n} views"
 
 
 def _base_opts():
@@ -43,6 +65,75 @@ def _base_opts():
     }
 
 
+# ── Core: accurate YouTube search via yt-dlp (same engine as YouTube) ────────
+
+def _ytdlp_search_sync(query: str, limit: int = 1) -> list:
+    """
+    Search YouTube using yt-dlp's native ytsearch — identical results to
+    what YouTube itself returns, unlike youtubesearchpython / py_yt.
+    """
+    opts = {
+        **_base_opts(),
+        "extract_flat": True,
+        "skip_download": True,
+        "noplaylist": False,
+    }
+    with yt_dlp.YoutubeDL(opts) as ydl:
+        info = ydl.extract_info(f"ytsearch{limit}:{query}", download=False)
+    entries = (info or {}).get("entries") or []
+    results = []
+    for entry in entries:
+        if not entry or not entry.get("id"):
+            continue
+        vid_id = entry["id"]
+        dur_sec = int(entry.get("duration") or 0)
+        results.append({
+            "id": vid_id,
+            "title": entry.get("title") or "Unknown",
+            "duration": _seconds_to_min(dur_sec),
+            "duration_sec": dur_sec,
+            "link": f"https://www.youtube.com/watch?v={vid_id}",
+            "thumbnail": f"https://i.ytimg.com/vi/{vid_id}/hqdefault.jpg",
+            "channel": entry.get("uploader") or entry.get("channel") or "",
+        })
+    return results
+
+
+async def _ytdlp_search(query: str, limit: int = 1) -> list:
+    """Async wrapper for _ytdlp_search_sync with in-process caching."""
+    cache_key = f"search:{limit}:{query}"
+    cached = _SEARCH_CACHE.get(cache_key)
+    if cached and _time.time() - cached[0] < _SEARCH_CACHE_TTL:
+        return cached[1]
+    loop = asyncio.get_event_loop()
+    results = await loop.run_in_executor(None, _ytdlp_search_sync, query, limit)
+    if results:
+        _SEARCH_CACHE[cache_key] = (_time.time(), results)
+    return results
+
+
+def _ytdlp_video_info_sync(video_url: str) -> dict:
+    """Full metadata extraction for a specific YouTube video URL."""
+    opts = {**_base_opts(), "skip_download": True}
+    with yt_dlp.YoutubeDL(opts) as ydl:
+        info = ydl.extract_info(video_url, download=False)
+    return info or {}
+
+
+async def _ytdlp_video_info(video_url: str) -> dict:
+    cache_key = f"info:{video_url}"
+    cached = _SEARCH_CACHE.get(cache_key)
+    if cached and _time.time() - cached[0] < _SEARCH_CACHE_TTL:
+        return cached[1]
+    loop = asyncio.get_event_loop()
+    info = await loop.run_in_executor(None, _ytdlp_video_info_sync, video_url)
+    if info:
+        _SEARCH_CACHE[cache_key] = (_time.time(), info)
+    return info
+
+
+# ── Download helpers ──────────────────────────────────────────────────────────
+
 def _download_song_sync(video_id: str) -> str:
     outtmpl = os.path.join(DOWNLOAD_DIR, f"{video_id}.%(ext)s")
     ydl_opts = {
@@ -55,7 +146,6 @@ def _download_song_sync(video_id: str) -> str:
         "fragment_retries": 3,
         "skip_unavailable_fragments": True,
         "prefer_free_formats": True,
-        "throttledratelimit": None,
         "buffersize": 1024 * 16,
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -92,12 +182,10 @@ async def download_song(link: str) -> str:
     video_id = link.split("v=")[-1].split("&")[0] if "v=" in link else link
     if not video_id or len(video_id) < 3:
         return None
-
     os.makedirs(DOWNLOAD_DIR, exist_ok=True)
     cached = _find_cached(video_id)
     if cached:
         return cached
-
     loop = asyncio.get_event_loop()
     try:
         return await loop.run_in_executor(None, _download_song_sync, video_id)
@@ -109,12 +197,10 @@ async def download_video(link: str) -> str:
     video_id = link.split("v=")[-1].split("&")[0] if "v=" in link else link
     if not video_id or len(video_id) < 3:
         return None
-
     os.makedirs(DOWNLOAD_DIR, exist_ok=True)
     file_path = os.path.join(DOWNLOAD_DIR, f"{video_id}.mp4")
     if os.path.exists(file_path) and os.path.getsize(file_path) > 0:
         return file_path
-
     loop = asyncio.get_event_loop()
     try:
         ok = await loop.run_in_executor(None, _download_video_sync, video_id, file_path)
@@ -146,15 +232,15 @@ def _extract_related_sync(videoid: str):
         vid = entry.get("id")
         if not vid or vid == videoid:
             continue
-        results.append(
-            {
-                "id": vid,
-                "title": entry.get("title") or "Unknown",
-                "duration": entry.get("duration"),
-            }
-        )
+        results.append({
+            "id": vid,
+            "title": entry.get("title") or "Unknown",
+            "duration": entry.get("duration"),
+        })
     return results
 
+
+# ── YouTubeAPI class ──────────────────────────────────────────────────────────
 
 class YouTubeAPI:
     def __init__(self):
@@ -190,47 +276,35 @@ class YouTubeAPI:
             link = self.base + link
         if "&" in link:
             link = link.split("&")[0]
-        cache_key = f"details:{link}"
-        cached = _SEARCH_CACHE.get(cache_key)
-        if cached and _time.time() - cached[0] < _SEARCH_CACHE_TTL:
-            return cached[1]
-        results = VideosSearch(link, limit=1)
-        for result in (await results.next())["result"]:
-            title = result["title"]
-            duration_min = result["duration"]
-            thumbnail = result["thumbnails"][0]["url"].split("?")[0]
-            vidid = result["id"]
-            duration_sec = int(time_to_seconds(duration_min)) if duration_min else 0
-        ret = (title, duration_min, duration_sec, thumbnail, vidid)
-        _SEARCH_CACHE[cache_key] = (_time.time(), ret)
-        return ret
+        results = await _ytdlp_search(link, limit=1)
+        if not results:
+            raise ValueError(f"No results found for: {link}")
+        r = results[0]
+        return r["title"], r["duration"], r["duration_sec"], r["thumbnail"], r["id"]
 
     async def title(self, link: str, videoid: Union[bool, str] = None):
         if videoid:
             link = self.base + link
         if "&" in link:
             link = link.split("&")[0]
-        results = VideosSearch(link, limit=1)
-        for result in (await results.next())["result"]:
-            return result["title"]
+        results = await _ytdlp_search(link, limit=1)
+        return results[0]["title"] if results else "Unknown"
 
     async def duration(self, link: str, videoid: Union[bool, str] = None):
         if videoid:
             link = self.base + link
         if "&" in link:
             link = link.split("&")[0]
-        results = VideosSearch(link, limit=1)
-        for result in (await results.next())["result"]:
-            return result["duration"]
+        results = await _ytdlp_search(link, limit=1)
+        return results[0]["duration"] if results else "0:00"
 
     async def thumbnail(self, link: str, videoid: Union[bool, str] = None):
         if videoid:
             link = self.base + link
         if "&" in link:
             link = link.split("&")[0]
-        results = VideosSearch(link, limit=1)
-        for result in (await results.next())["result"]:
-            return result["thumbnails"][0]["url"].split("?")[0]
+        results = await _ytdlp_search(link, limit=1)
+        return results[0]["thumbnail"] if results else None
 
     async def video(self, link: str, videoid: Union[bool, str] = None):
         if videoid:
@@ -270,27 +344,18 @@ class YouTubeAPI:
             link = self.base + link
         if "&" in link:
             link = link.split("&")[0]
-        cache_key = f"track:{link}"
-        cached = _SEARCH_CACHE.get(cache_key)
-        if cached and _time.time() - cached[0] < _SEARCH_CACHE_TTL:
-            return cached[1]
-        results = VideosSearch(link, limit=1)
-        for result in (await results.next())["result"]:
-            title = result["title"]
-            duration_min = result["duration"]
-            vidid = result["id"]
-            yturl = result["link"]
-            thumbnail = result["thumbnails"][0]["url"].split("?")[0]
+        results = await _ytdlp_search(link, limit=1)
+        if not results:
+            raise ValueError(f"No results found for: {link}")
+        r = results[0]
         track_details = {
-            "title": title,
-            "link": yturl,
-            "vidid": vidid,
-            "duration_min": duration_min,
-            "thumb": thumbnail,
+            "title": r["title"],
+            "link": r["link"],
+            "vidid": r["id"],
+            "duration_min": r["duration"],
+            "thumb": r["thumbnail"],
         }
-        ret = (track_details, vidid)
-        _SEARCH_CACHE[cache_key] = (_time.time(), ret)
-        return ret
+        return track_details, r["id"]
 
     async def formats(self, link: str, videoid: Union[bool, str] = None):
         if videoid:
@@ -302,19 +367,17 @@ class YouTubeAPI:
         with ydl:
             formats_available = []
             r = ydl.extract_info(link, download=False)
-            for format in r["formats"]:
+            for fmt in r["formats"]:
                 try:
-                    if "dash" not in str(format["format"]).lower():
-                        formats_available.append(
-                            {
-                                "format": format["format"],
-                                "filesize": format.get("filesize"),
-                                "format_id": format["format_id"],
-                                "ext": format["ext"],
-                                "format_note": format["format_note"],
-                                "yturl": link,
-                            }
-                        )
+                    if "dash" not in str(fmt["format"]).lower():
+                        formats_available.append({
+                            "format": fmt["format"],
+                            "filesize": fmt.get("filesize"),
+                            "format_id": fmt["format_id"],
+                            "ext": fmt["ext"],
+                            "format_note": fmt["format_note"],
+                            "yturl": link,
+                        })
                 except Exception:
                     continue
         return formats_available, link
@@ -324,16 +387,14 @@ class YouTubeAPI:
             link = self.base + link
         if "&" in link:
             link = link.split("&")[0]
-        a = VideosSearch(link, limit=10)
-        result = (await a.next()).get("result")
-        title = result[query_type]["title"]
-        duration_min = result[query_type]["duration"]
-        vidid = result[query_type]["id"]
-        thumbnail = result[query_type]["thumbnails"][0]["url"].split("?")[0]
-        return title, duration_min, thumbnail, vidid
+        results = await _ytdlp_search(link, limit=10)
+        if not results or query_type >= len(results):
+            raise ValueError("Not enough results")
+        r = results[query_type]
+        return r["title"], r["duration"], r["thumbnail"], r["id"]
 
     async def related(self, videoid: str):
-        """Fetch related videos (YouTube Mix) for autoplay. No external API used."""
+        """Fetch related videos (YouTube Mix) for autoplay."""
         loop = asyncio.get_event_loop()
         try:
             results = await loop.run_in_executor(None, _extract_related_sync, videoid)
