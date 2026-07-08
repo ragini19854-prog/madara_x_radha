@@ -52,7 +52,7 @@ telegraph
 tgcrypto
 unidecode
 wget
-yt-dlp>=2026.06.09
+yt-dlp
 youtube-search-python
 
 
