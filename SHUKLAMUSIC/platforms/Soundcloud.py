@@ -47,4 +47,4 @@ class SoundAPI:
             "uploader": info["uploader"],
             "filepath": xyz,
         }
-        return track_details, xyz 
+        return track_details, xyz
