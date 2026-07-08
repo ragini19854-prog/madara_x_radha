@@ -38,7 +38,7 @@ py-yt-search
 pyshorteners
 pyttsx3
 pytz
-py-tgcalls
+py-tgcalls>=2.2.0
 pyyaml
 qrcode
 rapidfuzz
@@ -47,12 +47,12 @@ search-engine-parser
 speedtest-cli
 SpeechRecognition
 spotipy
-stripe
+stripe==10.7.0
 telegraph
-tgcrypto
+tgcrypto>=1.2.5
 unidecode
 wget
-yt-dlp
+yt-dlp>=2026.06.09
 youtube-search-python
 
 
