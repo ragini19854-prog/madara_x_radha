@@ -199,3 +199,117 @@ client_session: <aiohttp.client.ClientSession object at 0x7f887cfe9b50>
 [09-Jul-26 11:18:14 - INFO] - SHUKLAMUSIC - ╔═════ஜ۩۞۩ஜ════╗
   ☠︎︎𝗠𝗔𝗗𝗘 𝗕𝗬 𝗠𝗥 𝗦𝗛𝗜𝗩𝗔𝗡𝗦𝗛
 ╚═════ஜ۩۞۩ஜ════╝
+[09-Jul-26 12:09:19 - ERROR] - pyrogram.dispatcher - Unexpected exception raised in CallbackQueryHandler:
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pyrogram/dispatcher.py", line 444, in handler_worker
+    await handler.callback(self.client, *args)
+  File "/home/runner/workspace/SHUKLAMUSIC/plugins/tools/quickgames.py", line 156, in tap_race_cb
+    await _add_coins(cb.from_user.id, cb.from_user.first_name, TAP_WIN_COINS)
+  File "/home/runner/workspace/SHUKLAMUSIC/plugins/tools/quickgames.py", line 35, in _add_coins
+    await _coins_db.insert_one({"user_id": user_id, "name": name, "coins": amount})
+  File "/nix/store/iizfzmqjdfvbyx82gqw92glb5zl6m4my-python3-3.12.12/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/collection.py", line 890, in insert_one
+    self._insert_one(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/collection.py", line 830, in _insert_one
+    self._database.client._retryable_write(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 2113, in _retryable_write
+    return self._retry_with_session(retryable, func, s, bulk, operation, operation_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 1986, in _retry_with_session
+    return self._retry_internal(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 2038, in _retry_internal
+    ).run()
+      ^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 2811, in run
+    res = self._read() if self._is_read else self._write()
+                                             ^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 3014, in _write
+    return self._func(self._session, conn, self._retryable)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/collection.py", line 818, in _insert_command
+    result = conn.command(
+             ^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/helpers.py", line 53, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/pool.py", line 403, in command
+    return command(
+           ^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/network.py", line 212, in command
+    helpers_shared._check_command_response(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/helpers_shared.py", line 284, in _check_command_response
+    raise OperationFailure(errmsg, code, response, max_wire_version)
+pymongo.errors.OperationFailure: cannot create a new collection -- already using 500 collections of 500, full error: {'ok': 0, 'errmsg': 'cannot create a new collection -- already using 500 collections of 500', 'code': 8000, 'codeName': 'AtlasError'}
+[09-Jul-26 12:12:04 - ERROR] - asyncio - Task exception was never retrieved
+future: <Task finished name='Task-4261' coro=<cmd_hot_vote.<locals>.close_vote() done, defined at /home/runner/workspace/SHUKLAMUSIC/plugins/tools/quickgames.py:327> exception=OperationFailure("cannot create a new collection -- already using 500 collections of 500, full error: {'ok': 0, 'errmsg': 'cannot create a new collection -- already using 500 collections of 500', 'code': 8000, 'codeName': 'AtlasError'}")>
+Traceback (most recent call last):
+  File "/home/runner/workspace/SHUKLAMUSIC/plugins/tools/quickgames.py", line 350, in close_vote
+    await _add_coins(uid, str(uid), HOT_WIN_COINS)
+  File "/home/runner/workspace/SHUKLAMUSIC/plugins/tools/quickgames.py", line 35, in _add_coins
+    await _coins_db.insert_one({"user_id": user_id, "name": name, "coins": amount})
+  File "/nix/store/iizfzmqjdfvbyx82gqw92glb5zl6m4my-python3-3.12.12/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/collection.py", line 890, in insert_one
+    self._insert_one(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/collection.py", line 830, in _insert_one
+    self._database.client._retryable_write(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 2113, in _retryable_write
+    return self._retry_with_session(retryable, func, s, bulk, operation, operation_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 1986, in _retry_with_session
+    return self._retry_internal(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 2038, in _retry_internal
+    ).run()
+      ^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 2811, in run
+    res = self._read() if self._is_read else self._write()
+                                             ^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 3014, in _write
+    return self._func(self._session, conn, self._retryable)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/collection.py", line 818, in _insert_command
+    result = conn.command(
+             ^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/helpers.py", line 53, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/pool.py", line 403, in command
+    return command(
+           ^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/synchronous/network.py", line 212, in command
+    helpers_shared._check_command_response(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pymongo/helpers_shared.py", line 284, in _check_command_response
+    raise OperationFailure(errmsg, code, response, max_wire_version)
+pymongo.errors.OperationFailure: cannot create a new collection -- already using 500 collections of 500, full error: {'ok': 0, 'errmsg': 'cannot create a new collection -- already using 500 collections of 500', 'code': 8000, 'codeName': 'AtlasError'}
+[09-Jul-26 15:14:04 - INFO] - SHUKLAMUSIC.core.mongo - Connecting to your Mongo Database...
+[09-Jul-26 15:14:04 - INFO] - SHUKLAMUSIC.core.mongo - Connected to your Mongo Database.
+[09-Jul-26 15:14:04 - INFO] - SHUKLAMUSIC.core.dir - Directories Updated.
+[09-Jul-26 15:14:04 - INFO] - SHUKLAMUSIC.core.git - Git Client Found [VPS DEPLOYER]
+[09-Jul-26 15:14:04 - INFO] - SHUKLAMUSIC.misc - 𝗗𝗔𝗧𝗔𝗕𝗔𝗦𝗘 𝗟𝗢𝗔𝗗 𝗕𝗔𝗕𝗬🍫........
+[09-Jul-26 15:14:04 - INFO] - SHUKLAMUSIC.core.bot - Starting Bot...
+[09-Jul-26 15:14:09 - INFO] - SHUKLAMUSIC.misc - 𝗦𝗨𝗗𝗢 𝗨𝗦𝗘𝗥 𝗗𝗢𝗡𝗘✨🎋.
+[09-Jul-26 15:14:14 - INFO] - SHUKLAMUSIC.core.bot - Music Bot Started Successfully as test radha music
+[09-Jul-26 15:14:15 - INFO] - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+[09-Jul-26 15:14:15 - INFO] - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+[09-Jul-26 15:14:15 - INFO] - apscheduler.scheduler - Added job "start_nightmode" to job store "default"
+[09-Jul-26 15:14:15 - INFO] - apscheduler.scheduler - Added job "close_nightmode" to job store "default"
+[09-Jul-26 15:14:15 - INFO] - apscheduler.scheduler - Scheduler started
+[09-Jul-26 15:14:20 - INFO] - SHUKLAMUSIC.plugins - 𝐀𝐥𝐥 𝐅𝐞𝐚𝐭𝐮𝐫𝐞𝐬 𝐋𝐨𝐚𝐝𝐞𝐝 𝐁𝐚𝐛𝐲🥳...
+[09-Jul-26 15:14:20 - INFO] - SHUKLAMUSIC.core.userbot - Starting Assistants...
+[09-Jul-26 15:14:21 - INFO] - SHUKLAMUSIC.core.userbot - Assistant Started as <a href=tg://user?id=8762430892>𝐌𝐎𝐇𝐈𝐓 // WINES</a>
+[09-Jul-26 15:14:21 - INFO] - SHUKLAMUSIC.core.call - Starting PyTgCalls Client...
+
+[09-Jul-26 15:14:37 - INFO] - SHUKLAMUSIC - ╔═════ஜ۩۞۩ஜ════╗
+  ☠︎︎𝗠𝗔𝗗𝗘 𝗕𝗬 𝗠𝗥 𝗦𝗛𝗜𝗩𝗔𝗡𝗦𝗛
+╚═════ஜ۩۞۩ஜ════╝

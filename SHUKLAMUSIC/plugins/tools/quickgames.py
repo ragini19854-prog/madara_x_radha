@@ -20,24 +20,31 @@ from SHUKLAMUSIC import app
 from SHUKLAMUSIC.core.mongo import mongodb
 from config import BANNED_USERS
 
-# Shared coin leaderboard (same collection as quickgames)
-_coins_db = mongodb["quickgames_coins"]
+# Reuse the existing wordgame_leaderboard collection (avoid creating new
+# collections — MongoDB Atlas free tier has a 500-collection hard limit).
+# Quick-game coin records are tagged with game_type="quickgame" so they
+# don't clash with word-game records which have no game_type field.
+_coins_db = mongodb["wordgame_leaderboard"]
+
+_GTYPE = "quickgame"
 
 
 async def _add_coins(user_id: int, name: str, amount: int):
-    existing = await _coins_db.find_one({"user_id": user_id})
+    existing = await _coins_db.find_one({"user_id": user_id, "game_type": _GTYPE})
     if existing:
         await _coins_db.update_one(
-            {"user_id": user_id},
-            {"$inc": {"coins": amount}, "$set": {"name": name}},
+            {"user_id": user_id, "game_type": _GTYPE},
+            {"$inc": {"points": amount}, "$set": {"name": name}},
         )
     else:
-        await _coins_db.insert_one({"user_id": user_id, "name": name, "coins": amount})
+        await _coins_db.insert_one(
+            {"user_id": user_id, "name": name, "points": amount, "game_type": _GTYPE}
+        )
 
 
 async def _get_coins(user_id: int) -> int:
-    doc = await _coins_db.find_one({"user_id": user_id})
-    return doc["coins"] if doc else 0
+    doc = await _coins_db.find_one({"user_id": user_id, "game_type": _GTYPE})
+    return doc["points"] if doc else 0
 
 # ── in-memory state ─────────────────────────────────────────
 _tap_games   = {}   # chat_id → {phase, winner, start_time, msg}
