@@ -313,3 +313,16 @@ pymongo.errors.OperationFailure: cannot create a new collection -- already using
 [09-Jul-26 15:14:37 - INFO] - SHUKLAMUSIC - ╔═════ஜ۩۞۩ஜ════╗
   ☠︎︎𝗠𝗔𝗗𝗘 𝗕𝗬 𝗠𝗥 𝗦𝗛𝗜𝗩𝗔𝗡𝗦𝗛
 ╚═════ஜ۩۞۩ஜ════╝
+[10-Jul-26 03:00:01 - INFO] - SHUKLAMUSIC.core.mongo - Connecting to your Mongo Database...
+[10-Jul-26 03:00:01 - INFO] - SHUKLAMUSIC.core.mongo - Connected to your Mongo Database.
+[10-Jul-26 03:00:01 - INFO] - SHUKLAMUSIC.core.dir - Directories Updated.
+[10-Jul-26 03:00:01 - INFO] - SHUKLAMUSIC.core.git - Git Client Found [VPS DEPLOYER]
+[10-Jul-26 03:00:01 - INFO] - SHUKLAMUSIC.misc - 𝗗𝗔𝗧𝗔𝗕𝗔𝗦𝗘 𝗟𝗢𝗔𝗗 𝗕𝗔𝗕𝗬🍫........
+[10-Jul-26 03:00:01 - INFO] - SHUKLAMUSIC.core.bot - Starting Bot...
+[10-Jul-26 03:00:06 - INFO] - SHUKLAMUSIC.misc - 𝗦𝗨𝗗𝗢 𝗨𝗦𝗘𝗥 𝗗𝗢𝗡𝗘✨🎋.
+[10-Jul-26 03:00:12 - INFO] - SHUKLAMUSIC.core.bot - Music Bot Started Successfully as test radha music
+[10-Jul-26 03:00:12 - INFO] - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+[10-Jul-26 03:00:12 - INFO] - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+[10-Jul-26 03:00:12 - INFO] - apscheduler.scheduler - Added job "start_nightmode" to job store "default"
+[10-Jul-26 03:00:12 - INFO] - apscheduler.scheduler - Added job "close_nightmode" to job store "default"
+[10-Jul-26 03:00:12 - INFO] - apscheduler.scheduler - Scheduler started
